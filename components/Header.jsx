@@ -5,12 +5,13 @@ import Link from 'next/link';
 
 const categories = [
   { name: 'ARCHIVE', slug: 'archive' },
+
   { name: 'LISTS', slug: 'top10' },
 ];
 
 const Header = () => {
   return (
-    <div className="container mx-auto px-10 mb-8">
+    <div className="container max-w-screen-lg mx-auto px-10 mb-8 bg-red-100">
       <div className="py-7">
         <div className="flex justify-between items-center">
           <Link href={`/category/${categories[0].slug}`}>

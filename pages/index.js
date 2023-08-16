@@ -1,18 +1,15 @@
 import { PostCard, Categories, PostWidget, Layout } from '../components';
-
-const post = [
-  { title: 'React Testing', excerpt: 'Learn React Testing' },
-  { title: 'React Testing', excerpt: 'Learn React Testing' },
-];
+import { getPosts } from '../services';
 
 export default function Home({ posts }) {
+  console.log('Posts: ', posts);
   return (
     <Layout>
       <div className="container mx-auto px-10 mb-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-8 col-span-1">
-            {post.map((post, index) => (
-              <PostCard key={index} post={post} />
+            {posts.map((post, index) => (
+              <PostCard key={post.title} post={post.node} />
             ))}
           </div>
           <div className="lg:col-span-4 col-span-1">
@@ -25,4 +22,12 @@ export default function Home({ posts }) {
       </div>
     </Layout>
   );
+}
+
+export async function getStaticProps(context) {
+  const posts = (await getPosts()) || [];
+
+  return {
+    props: { posts },
+  };
 }

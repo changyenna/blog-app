@@ -1,5 +1,5 @@
 {
-  "name": "blog-app",
+  "name": "manga-blog",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,13 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "autoprefixer": "10.4.15",
-    "eslint": "8.47.0",
-    "eslint-config-next": "13.4.16",
+    "autoprefixer": "^10.4.15",
+    "graphql": "^16.8.0",
+    "graphql-request": "^6.1.0",
+    "html-react-parser": "^4.2.1",
+    "moment": "^2.29.4",
     "next": "13.4.16",
-    "postcss": "8.4.28",
+    "postcss": "^8.4.28",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "tailwindcss": "3.3.3"
+    "react-multi-carousel": "^2.8.4",
+    "sass": "^1.65.1"
+  },
+  "devDependencies": {
+    "eslint": "8.47.0",
+    "eslint-config-next": "13.4.16",
+    "tailwindcss": "^3.3.3"
   }
 }
