@@ -11,7 +11,7 @@ const categories = [
 
 const Header = () => {
   return (
-    <div className="container max-w-screen-lg mx-auto px-10 mb-8 bg-red-100">
+    <div className="container flex-col h-auto mx-auto max-w-screen-lg px-10">
       <div className="py-7">
         <div className="flex justify-between items-center">
           <Link href={`/category/${categories[0].slug}`}>

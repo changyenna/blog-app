@@ -1,23 +1,25 @@
 import { PostCard, Categories, PostWidget, Layout } from '../components';
-import { getPosts } from '../services';
+import { getRecentPosts } from '../services';
 
 export default function Home({ posts }) {
-  console.log('Posts: ', posts);
   return (
     <Layout>
-      <div className="container mx-auto px-10 mb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-8 col-span-1">
-            {posts.map((post, index) => (
-              <PostCard key={post.title} post={post.node} />
-            ))}
+      <div className="container flex-col h-auto mx-auto max-w-screen-lg px-0">
+        <div className="grid grid-cols-1 gap-0">
+          <div className="col-span-1">
+            {posts
+              .slice()
+              .sort((postA, postB) => {
+                return new Date(postB.createdAt) - new Date(postA.createdAt);
+              })
+              .map((post, index) => (
+                <PostCard key={index} post={post} />
+              ))}
           </div>
-          <div className="lg:col-span-4 col-span-1">
-            <div className="lg:sticky relative top-8">
-              <PostWidget />
-              <Categories />
-            </div>
-          </div>
+          {/* <div>
+            <PostWidget />
+            <Categories />
+          </div> */}
         </div>
       </div>
     </Layout>
@@ -25,7 +27,7 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps(context) {
-  const posts = (await getPosts()) || [];
+  const posts = (await getRecentPosts()) || [];
 
   return {
     props: { posts },
