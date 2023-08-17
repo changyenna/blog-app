@@ -32,7 +32,7 @@ const PostDetails = ({ post }) => {
             </div>
             <div className="col-span-3">
               <PostDetail post={post} />
-              <Author author={post.author} />
+              {/* <Author author={post.author} /> */}
               {/* <AdjacentPosts slug={post.slug} createdAt={post.createdAt} /> */}
               <CommentsForm />
               <Comments />
