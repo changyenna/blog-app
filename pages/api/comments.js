@@ -41,7 +41,5 @@ export default async function asyncfunction(req, res) {
     slug: req.body.slug,
   });
 
-  console.log({ result });
-
   return res.status(200).send(result);
 }

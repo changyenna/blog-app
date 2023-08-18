@@ -12,9 +12,6 @@ const CommentsForm = ({ slug }) => {
     storeData: false,
   });
 
-  console.log('inside CommentsForm');
-  console.log(slug);
-
   useEffect(() => {
     setLocalStorage(window.localStorage);
     const initalFormData = {

@@ -28,7 +28,7 @@ const PostDetails = ({ post }) => {
   return (
     <>
       <Layout>
-        <div className="container flex-col h-auto mx-auto max-w-screen-lg px-10">
+        <div className="container flex-col h-auto mx-auto max-w-screen-xl px-10">
           <div className="grid grid-cols-7 gap-5">
             <div className="col-span-2">
               <div className="relative lg:sticky top-8">
@@ -40,7 +40,7 @@ const PostDetails = ({ post }) => {
               {/* <Author author={post.author} /> */}
               {/* <AdjacentPosts slug={post.slug} createdAt={post.createdAt} /> */}
               <CommentsForm slug={post.slug} />
-              <Comments />
+              <Comments slug={post.slug} />
             </div>
             <div className="col-span-2">
               <div className="relative lg:sticky top-8">
