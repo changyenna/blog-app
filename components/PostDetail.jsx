@@ -64,11 +64,11 @@ const PostDetail = ({ post }) => {
     <>
       <div className="">
         <div className="relative overflow-hidden shadow-sm mb-6">
-          {/* <img
+          <img
             src={post.featuredImage.url}
             alt=""
             className="object-top h-full w-full object-cover"
-          /> */}
+          />
         </div>
         <div className="px-4 lg:px-0">
           <div className="flex items-center mb-8 w-full">

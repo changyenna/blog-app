@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 import {
   PostDetail,
@@ -15,11 +15,16 @@ import { getPosts, getPostDetails } from '../../services';
 // import { AdjacentPosts } from '../../sections';
 
 const PostDetails = ({ post }) => {
-  // const router = useRouter();
+  console.log('Inside Post Details ', post);
 
-  // if (router.isFallback) {
-  //   return <Loader />;
-  // }
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loader />;
+  }
+  if (!post) {
+    return <Loader />;
+  }
   return (
     <>
       <Layout>
@@ -31,7 +36,7 @@ const PostDetails = ({ post }) => {
               </div>
             </div>
             <div className="col-span-3">
-              {/* <PostDetail post={post} /> */}
+              <PostDetail post={post} />
               {/* <Author author={post.author} /> */}
               {/* <AdjacentPosts slug={post.slug} createdAt={post.createdAt} /> */}
               <CommentsForm />
@@ -51,9 +56,9 @@ const PostDetails = ({ post }) => {
 };
 export default PostDetails;
 
-// Fetch data at build time
 export async function getStaticProps({ params }) {
   const data = await getPostDetails(params.slug);
+  console.log('Data:', data);
   return {
     props: {
       post: data,
@@ -61,13 +66,16 @@ export async function getStaticProps({ params }) {
   };
 }
 
-// // Specify dynamic routes to pre-render pages based on data.
-// // The HTML is generated at build time and will be reused on each request.
-
 export async function getStaticPaths() {
   const posts = await getPosts();
+
+  // Filter out entries without slugs and then generate paths
+  const paths = posts
+    .filter(({ node }) => node && node.slug) // Filter out undefined or null posts
+    .map(({ node }) => ({ params: { slug: node.slug } }));
+
   return {
-    paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
+    paths,
     fallback: true,
   };
 }
