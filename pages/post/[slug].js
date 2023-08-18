@@ -15,7 +15,7 @@ import { getPosts, getPostDetails } from '../../services';
 // import { AdjacentPosts } from '../../sections';
 
 const PostDetails = ({ post }) => {
-  console.log('Inside Post Details ', post);
+  // console.log('Inside Post Details ', post);
 
   const router = useRouter();
 
@@ -39,7 +39,7 @@ const PostDetails = ({ post }) => {
               <PostDetail post={post} />
               {/* <Author author={post.author} /> */}
               {/* <AdjacentPosts slug={post.slug} createdAt={post.createdAt} /> */}
-              <CommentsForm />
+              <CommentsForm slug={post.slug} />
               <Comments />
             </div>
             <div className="col-span-2">
@@ -58,7 +58,7 @@ export default PostDetails;
 
 export async function getStaticProps({ params }) {
   const data = await getPostDetails(params.slug);
-  console.log('Data:', data);
+  // console.log('Data:', data);
   return {
     props: {
       post: data,
