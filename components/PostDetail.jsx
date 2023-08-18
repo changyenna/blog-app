@@ -3,6 +3,9 @@ import React from 'react';
 import moment from 'moment';
 
 const PostDetail = ({ post }) => {
+  console.log('This is post: ', post);
+  console.log('This is post.featureImage.url: ', post.featuredImage.url);
+  console.log('This is slug: ', post.slug);
   const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text;
 
@@ -64,11 +67,11 @@ const PostDetail = ({ post }) => {
     <>
       <div className="">
         <div className="relative overflow-hidden shadow-sm mb-6">
-          <img
+          {/* <img
             src={post.featuredImage.url}
             alt=""
             className="object-top h-full w-full object-cover"
-          />
+          /> */}
         </div>
         <div className="px-4 lg:px-0">
           <div className="flex items-center mb-8 w-full">
