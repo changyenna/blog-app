@@ -3,9 +3,6 @@ import React from 'react';
 import moment from 'moment';
 
 const PostDetail = ({ post }) => {
-  console.log('This is post: ', post);
-  console.log('This is post.featureImage.url: ', post.featuredImage.url);
-  console.log('This is slug: ', post.slug);
   const getContentFragment = (index, text, obj, type) => {
     let modifiedText = text;
 

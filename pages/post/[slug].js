@@ -15,6 +15,9 @@ import { getPosts, getPostDetails } from '../../services';
 // import { AdjacentPosts } from '../../sections';
 
 const PostDetails = ({ post }) => {
+  console.log('This is post: ', post);
+  console.log('This is post.featureImage.url: ', post.featuredImage.url);
+  console.log('This is slug: ', post.slug);
   // const router = useRouter();
 
   // if (router.isFallback) {
@@ -31,7 +34,7 @@ const PostDetails = ({ post }) => {
               </div>
             </div>
             <div className="col-span-3">
-              <PostDetail post={post} />
+              {/* <PostDetail post={post} /> */}
               {/* <Author author={post.author} /> */}
               {/* <AdjacentPosts slug={post.slug} createdAt={post.createdAt} /> */}
               <CommentsForm />
@@ -40,6 +43,7 @@ const PostDetails = ({ post }) => {
             <div className="col-span-2">
               <div className="relative lg:sticky top-8">
                 adjacent posts photo gallery
+                {/* <PostWidget /> */}
               </div>
             </div>
           </div>

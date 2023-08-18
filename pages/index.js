@@ -16,10 +16,10 @@ export default function Home({ posts }) {
                 <PostCard key={index} post={post} />
               ))}
           </div>
-          {/* <div>
-            <PostWidget />
-            <Categories />
-          </div> */}
+          <div>
+            {/* <PostWidget /> */}
+            {/* <Categories /> */}
+          </div>
         </div>
       </div>
     </Layout>
