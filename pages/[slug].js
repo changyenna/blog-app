@@ -25,39 +25,39 @@ export async function getStaticProps({ params: variables }) {
         slug
         form {
           id  
-          fields {
-            __typename
-            ... on FormInput {
-              name
-              type
-              inputLabel: label
-              placeholder
-              required
-            }
-            ... on FormTextarea {
-              name
-              textareaLabel: label
-              placeholder
-              required
-            }
-            ... on FormCheckbox {
-              name
-              checkboxLabel: label
-              required
-            }
-            ... on FormSelect {
-              name
-              selectLabel: label
-              options {
-                value
-                option
-              }
-              required
-            }
+fields {
+        __typename
+        ... on FormInput {
+          name
+          type
+          inputLabel: label
+          placeholder
+          required
+        }
+        ... on FormTextarea {
+          name
+          textareaLabel: label
+          placeholder
+          required
+        }
+        ... on FormCheckbox {
+          name
+          checkboxLabel: label
+          required
+        }
+        ... on FormSelect {
+          name
+          selectLabel: label
+          options {
+            value
+            option
           }
+          required
         }
       }
     }
+  }
+}
     `,
     variables
   );

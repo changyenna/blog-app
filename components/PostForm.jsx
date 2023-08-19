@@ -253,3 +253,128 @@
 // export default function Index(props) {
 //   return <pre>{JSON.stringify(props, null, 2)}</pre>;
 // }
+
+import React, { useState } from 'react';
+import { submitPost } from '../services';
+
+const PostForm = () => {
+  const [formData, setFormData] = useState({
+    title: '',
+    slug: '',
+    excerpt: '',
+    // content: '',
+    // featuredImage: '', // You can implement this as needed
+    featuredPost: true,
+  });
+
+  const onInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (type === 'radio' && formData[name] !== value) {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value === 'true', // Convert the value to a boolean
+      }));
+    } else {
+      const newValue = type === 'checkbox' ? checked : value;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: newValue,
+      }));
+    }
+  };
+  const handlePostSubmission = () => {
+    submitPost(formData).then((res) => {
+      // Handle the response or any success/error messages here
+      console.log('Post submitted:', res);
+      // You can add additional logic for success or error handling here
+    });
+  };
+
+  return (
+    <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
+      <h3 className="text-xl mb-8 font-semibold border-b pb-4">
+        Create a New Post
+      </h3>
+      <div className="grid grid-cols-1 gap-4 mb-4">
+        <input
+          type="text"
+          value={formData.title}
+          onChange={onInputChange}
+          className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
+          placeholder="Title"
+          name="title"
+        />
+        <input
+          type="text"
+          value={formData.slug}
+          onChange={onInputChange}
+          className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
+          placeholder="Slug"
+          name="slug"
+        />
+        <textarea
+          value={formData.excerpt}
+          onChange={onInputChange}
+          className="p-4 outline-none w-full rounded-lg h-40 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
+          name="excerpt"
+          placeholder="Excerpt"
+        />
+        {/* <textarea
+          value={formData.content}
+          onChange={onInputChange}
+          className="p-4 outline-none w-full rounded-lg h-80 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
+          name="content"
+          placeholder="Content"
+        />
+        <input
+          type="text"
+          value={formData.featuredImage}
+          onChange={onInputChange}
+          className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
+          placeholder="Featured Image ID"
+          name="featuredImage"
+        /> */}
+        <div className="mb-4">
+          <label className="block font-medium text-gray-700">
+            Featured Post:
+          </label>
+          <div className="mt-2">
+            <label className="inline-flex items-center">
+              <input
+                type="radio"
+                className="form-radio"
+                name="featuredPost"
+                value="true"
+                checked={formData.featuredPost === true}
+                onChange={onInputChange}
+              />
+              <span className="ml-2">Yes</span>
+            </label>
+            <label className="inline-flex items-center ml-6">
+              <input
+                type="radio"
+                className="form-radio"
+                name="featuredPost"
+                value="false"
+                checked={formData.featuredPost === false}
+                onChange={onInputChange}
+              />
+              <span className="ml-2">No</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div className="mt-8">
+        <button
+          type="button"
+          onClick={handlePostSubmission}
+          className="transition duration-500 ease hover:bg-indigo-900 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer"
+        >
+          Create Post
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default PostForm;

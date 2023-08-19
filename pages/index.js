@@ -1,4 +1,10 @@
-import { PostCard, Categories, PostWidget, Layout } from '../components';
+import {
+  PostCard,
+  Categories,
+  PostWidget,
+  Layout,
+  PostForm,
+} from '../components';
 import { getRecentPosts } from '../services';
 
 export default function Home({ posts }) {
@@ -17,6 +23,7 @@ export default function Home({ posts }) {
               ))}
           </div>
           <div>
+            <PostForm></PostForm>
             {/* <PostWidget /> */}
             {/* <Categories /> */}
           </div>

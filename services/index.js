@@ -393,13 +393,25 @@ export const getRecentPosts = async () => {
   return result.posts;
 };
 
-export const submitPost = async (obj) => {
+// export const submitPost = async (obj) => {
+//   const result = await fetch('/api/posts', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(obj),
+//   });
+
+//   return result.json();
+// };
+
+export const submitPost = async (postData) => {
   const result = await fetch('/api/posts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(obj),
+    body: JSON.stringify(postData),
   });
 
   return result.json();
