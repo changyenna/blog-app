@@ -15,18 +15,20 @@ export default async function posts(req, res) {
   });
 
   const query = gql`
-    mutation CreateComment(
-      $name: String!
-      $email: String!
-      $comment: String!
+    mutation CreatePost(
+      $title: String!
       $slug: String!
+      $excerpt: String!
+      $content: RichTextAST!
+      $featuredPost: Boolean!
     ) {
-      createComment(
+      createPost(
         data: {
-          name: $name
-          email: $email
-          comment: $comment
-          post: { connect: { slug: $slug } }
+          title: $title
+          slug: $slug
+          excerpt: $excerpt
+          content: $content
+          featuredPost: $featuredPost
         }
       ) {
         id
@@ -35,10 +37,12 @@ export default async function posts(req, res) {
   `;
 
   const result = await graphQLClient.request(query, {
-    name: req.body.name,
-    email: req.body.email,
-    comment: req.body.comment,
+    title: req.body.title,
     slug: req.body.slug,
+    excerpt: req.body.excerpt,
+    content: req.body.content,
+    featuredImage: req.body.featuredImage,
+    featuredPost: req.body.featuredPost,
   });
 
   return res.status(200).send(result);
