@@ -158,9 +158,9 @@
 
 import { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { Layout } from '../components';
+import { Layout, PostForm } from '../components';
 
-import * as Fields from './FormFields';
+// import * as Fields from './FormFields';
 
 export default function Form({ id, fields }) {
   const correctPassword = 'KRONOS'; // Replace with the actual correct password
@@ -227,29 +227,9 @@ export default function Form({ id, fields }) {
   // Render the form after correct password is inputted
   return (
     <Layout>
-      <FormProvider {...methods}>
-        <div className="container flex-col h-auto mx-auto max-w-screen-lg px-10 py-10 pt-10 pb-10">
-          <h3 className="text-xl mb-8 font-semibold border-b pb-4">
-            Create a New Post
-          </h3>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            {fields.map(({ __typename, ...field }, index) => {
-              const Field = Fields[__typename];
-
-              if (!Field) return null;
-
-              return <Field key={index} {...field} />;
-            })}
-
-            <button
-              type="submit"
-              className="transition duration-500 ease hover:bg-indigo-900 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-      </FormProvider>
+      <div className="mx-auto">
+        <PostForm></PostForm>
+      </div>
     </Layout>
   );
 }
