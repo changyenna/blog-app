@@ -28,7 +28,6 @@
     "react-quill": "^2.0.0",
     "sass": "^1.65.1",
     "slate": "^0.94.1",
-    "slate-html-serializer": "^0.8.13",
     "slate-react": "^0.98.1"
   },
   "devDependencies": {
