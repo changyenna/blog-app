@@ -1,6 +1,6 @@
 import React from 'react';
 import { GraphQLClient } from 'graphql-request';
-import Form from '../components/Form';
+// import Form from '../components/Form';
 
 const hygraph = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT);
 

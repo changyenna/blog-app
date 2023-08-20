@@ -23,7 +23,6 @@ export default function Home({ posts }) {
               ))}
           </div>
           <div>
-            <PostForm></PostForm>
             {/* <PostWidget /> */}
             {/* <Categories /> */}
           </div>
