@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { submitPost } from '../services';
-import { createEditor } from 'slate';
+import { createEditor, Editor, Transforms, Text } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
+import TextEditor from './TextEditor';
 
 const PostForm = () => {
   const [editor] = useState(() => withReact(createEditor()));
@@ -11,10 +12,11 @@ const PostForm = () => {
       children: [{ text: '' }],
     },
   ];
+
   const [content, setContent] = useState();
 
   const onContentChange = (newContent) => {
-    // console.log('New content:', JSON.stringify(newContent, null, 2));
+    console.log('New content:', JSON.stringify(newContent, null, 2));
     setContent(newContent);
   };
 
@@ -63,6 +65,30 @@ const PostForm = () => {
     }
   };
 
+  const applyBoldFormatting = () => {
+    const [match] = Editor.nodes(editor, {
+      match: (n) => n.bold === true,
+      universal: true,
+    });
+
+    if (!match) {
+      Transforms.setNodes(
+        editor,
+        { bold: true }, // Add or remove other styles as needed
+        { match: (n) => Text.isText(n), split: true }
+      );
+    } else {
+      Transforms.unwrapNodes(editor, {
+        match: (n) => n.bold === true,
+        split: true,
+      });
+    }
+  };
+
+  const handleBoldClick = (e) => {
+    e.preventDefault();
+    applyBoldFormatting();
+  };
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8 max-w-screen-lg w-full">
@@ -86,7 +112,6 @@ const PostForm = () => {
             placeholder="slug"
             name="slug"
           />
-
           <textarea
             value={formData.excerpt}
             onChange={onInputChange}
@@ -96,17 +121,18 @@ const PostForm = () => {
           />
           <div className="mb-4">
             {/* <label className="block font-medium text-gray-700">Content:</label> */}
-            <div className="mt-2">
+            <div className="mt-0">
               <Slate
                 editor={editor}
                 value={content}
                 onChange={onContentChange}
                 initialValue={initialValue}
               >
-                <Editable
+                <TextEditor editor={editor} readOnly={false} />
+                {/* <Editable
                   className="p-4 outline-none w-full rounded-lg h-80 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
                   placeholder="Content"
-                />
+                /> */}
               </Slate>
             </div>
           </div>
