@@ -100,7 +100,7 @@ const PostForm = () => {
             type="text"
             value={formData.title}
             onChange={onInputChange}
-            className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
+            className="py-3 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700 text-2xl font-bold"
             placeholder="title"
             name="title"
           />
@@ -108,7 +108,7 @@ const PostForm = () => {
             type="text"
             value={formData.slug}
             onChange={onInputChange}
-            className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
+            className="py-3 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
             placeholder="slug"
             name="slug"
           />

@@ -293,7 +293,15 @@ function TextEditor(props) {
         renderElement={renderElement}
         renderLeaf={renderLeaf}
         className="p-5 outline-none w-full rounded-lg h-auto focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
-        placeholder="Content"
+        style={{
+          padding: '1rem',
+          border: '1px solid #d1d5db',
+          borderRadius: '0.375rem',
+          backgroundColor: '#f3f4f6',
+          color: '#374151',
+          resize: 'vertical',
+          minHeight: '20rem',
+        }}
       />
     </div>
   );
