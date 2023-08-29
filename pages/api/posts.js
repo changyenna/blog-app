@@ -30,6 +30,7 @@ export default async function posts(req, res) {
           content: $content
           featuredPost: $featuredPost
           featuredImage: { connect: { id: $featuredImage } }
+          author: {connect: {id: "clldemm4df8qk0bmtcmromun7"}}}
         }
       ) {
         title
