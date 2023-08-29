@@ -28,7 +28,7 @@ export default function AssetInput({ onAssetUploaded }) {
           setUploadStatus('Upload successful');
           try {
             const publishRes = await fetch(`/api/publish-asset/${data.id}`, {
-              method: 'POST', // or 'PUT'
+              method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
               },

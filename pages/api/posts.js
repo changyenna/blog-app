@@ -30,9 +30,10 @@ export default async function posts(req, res) {
           content: $content
           featuredPost: $featuredPost
           featuredImage: { connect: { id: $featuredImage } }
-          author: {connect: {id: "clldemm4df8qk0bmtcmromun7"}}}
+          author: { connect: { id: "clldemm4df8qk0bmtcmromun7" } }
         }
       ) {
+        id
         title
         content {
           raw
@@ -50,7 +51,23 @@ export default async function posts(req, res) {
     featuredPost: req.body.featuredPost,
   });
 
-  console.log('Sending Variables:', result);
+  // const createdPostId = result.createPost.id; // Extract the created post's ID
+
+  // console.log('Result:', JSON.stringify(result, null, 2));
+  // console.log('Created Post ID:', createdPostId);
+
+  // // Now trigger the publishing process using the createdPostId
+
+  // const publishRes = await fetch(`/api/publish-post/${createdPostId}`, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // });
+
+  // if (!publishRes.ok) {
+  //   // Handle error while publishing
+  // }
 
   return res.status(200).send(result);
 }

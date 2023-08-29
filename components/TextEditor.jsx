@@ -260,7 +260,7 @@ function TextEditor(props) {
             formatUnderlined();
           }}
         >
-          <p class="underline underline-offset-4">U</p>
+          <p className="underline underline-offset-4">U</p>
         </button>
         <button
           className="bg-gray-200 px-2 py-1 mr-2 rounded focus:outline-none"

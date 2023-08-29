@@ -60,10 +60,36 @@ const PostForm = () => {
       featuredPost,
     };
 
-    console.log('Post Object:', JSON.stringify(postObj, null, 2));
+    // console.log('Post Object:', JSON.stringify(postObj, null, 2));
+
     try {
       const response = await submitPost(postObj);
-      console.log('Post submitted:', response);
+      // console.log('Post submitted:', response);
+      console.log('Post submitted:', JSON.stringify(response, null, 2));
+      console.log('Response Post ID', response.createPost.id);
+
+      // Publish the post
+      try {
+        const publishRes = await fetch(
+          `/api/publish-post/${response.createPost.id}`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+
+        if (!publishRes.ok) {
+          console.error(
+            'Error publishing post:',
+            publishRes.status,
+            publishRes.statusText
+          );
+        }
+      } catch (error) {
+        console.error('Error publishing post:', error);
+      }
     } catch (error) {
       console.error('Error submitting post:', error);
     }

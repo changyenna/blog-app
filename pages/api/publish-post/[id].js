@@ -1,19 +1,16 @@
 import { GraphQLClient, gql } from 'graphql-request';
 
-export default async function handler(req, res) {
-  const { id } = req.query; // This will capture the ID from the route parameter
+export default async function publishPost(req, res) {
+  const postId = req.query.id;
+  console.log('Post ID inside async function:', postId);
 
-  // Create a GraphQL client
-  const graphQLClient = new GraphQLClient(
-    process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
-      },
-    }
-  );
+  const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+  const graphQLClient = new GraphQLClient(graphqlAPI, {
+    headers: {
+      authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
+    },
+  });
 
-  // Define your GraphQL mutation for publishing the post
   const mutation = gql`
     mutation PublishPost($id: ID!) {
       publishPost(where: { id: $id }, to: PUBLISHED) {
@@ -23,13 +20,15 @@ export default async function handler(req, res) {
   `;
 
   try {
-    // Execute the GraphQL mutation
-    await graphQLClient.request(mutation, {
-      id, // Pass the ID captured from the route parameter
+    console.log('Attempting to publish post...');
+
+    const result = await graphQLClient.request(mutation, {
+      id: postId,
     });
 
-    // Respond with success
-    res.status(200).json({ message: 'Post published successfully' });
+    console.log('Publish result:', JSON.stringify(result, null, 2));
+
+    res.status(200).json(result.publishPost);
   } catch (error) {
     console.error('Error publishing post:', error);
     res.status(500).json({ error: 'Error publishing post' });
