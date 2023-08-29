@@ -9,7 +9,7 @@ export default async function posts(req, res) {
     },
   });
 
-  const contentString = JSON.stringify(req.body.content); // Stringify the content
+  const contentString = JSON.stringify(req.body.content);
 
   console.log('Received Content:', contentString);
 
@@ -20,6 +20,7 @@ export default async function posts(req, res) {
       $excerpt: String!
       $content: RichTextAST!
       $featuredPost: Boolean
+      $featuredImage: ID!
     ) {
       createPost(
         data: {
@@ -28,6 +29,7 @@ export default async function posts(req, res) {
           excerpt: $excerpt
           content: $content
           featuredPost: $featuredPost
+          featuredImage: { connect: { id: $featuredImage } }
         }
       ) {
         title
@@ -43,6 +45,7 @@ export default async function posts(req, res) {
     slug: req.body.slug,
     excerpt: req.body.excerpt,
     content: req.body.content,
+    featuredImage: req.body.featuredImage,
     featuredPost: req.body.featuredPost,
   });
 

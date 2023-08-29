@@ -3,6 +3,7 @@ import { submitPost } from '../services';
 import { createEditor, Editor, Transforms, Text } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 import TextEditor from './TextEditor';
+import AssetInput from './AssetInput';
 
 const PostForm = () => {
   const [editor] = useState(() => withReact(createEditor()));
@@ -25,6 +26,7 @@ const PostForm = () => {
     slug: '',
     excerpt: '',
     content: '',
+    featuredImage: '',
     featuredPost: true,
   });
 
@@ -43,8 +45,9 @@ const PostForm = () => {
       }));
     }
   };
+
   const handlePostSubmission = async () => {
-    const { title, slug, excerpt, featuredPost } = formData;
+    const { title, slug, excerpt, featuredPost, featuredImage } = formData;
 
     const postObj = {
       title,
@@ -53,6 +56,7 @@ const PostForm = () => {
       content: {
         children: content ? content : [],
       },
+      featuredImage,
       featuredPost,
     };
 
@@ -83,6 +87,13 @@ const PostForm = () => {
         split: true,
       });
     }
+  };
+
+  const handleAssetUploaded = (id) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      featuredImage: id,
+    }));
   };
 
   const handleBoldClick = (e) => {
@@ -134,6 +145,15 @@ const PostForm = () => {
                   placeholder="Content"
                 /> */}
               </Slate>
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <label className="block font-medium text-gray-700">
+              Featured Image
+            </label>
+            <div className="mt-2">
+              <AssetInput onAssetUploaded={handleAssetUploaded} />
             </div>
           </div>
 

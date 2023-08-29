@@ -27,7 +27,7 @@ const PostCard = ({ post }) => (
         <p className="text-center text-white text-xl font-bold uppercase">
           <Link href={`/post/${post.slug}`}>
             {post.title}
-            <br /> {moment(post.createdAt).format('MMM DD, YYYY')}
+            {moment(post.createdAt).format('MMM DD, YYYY')}
           </Link>
         </p>
       </div>
