@@ -377,7 +377,7 @@ export const getRecentPosts = async () => {
     query GetPostDetails() {
       posts(
         orderBy: createdAt_ASC
-        last: 7
+        last: 10
       ) {
         title
         featuredImage {
@@ -392,18 +392,6 @@ export const getRecentPosts = async () => {
 
   return result.posts;
 };
-
-// export const submitPost = async (obj) => {
-//   const result = await fetch('/api/posts', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(obj),
-//   });
-
-//   return result.json();
-// };
 
 export const submitPost = async (postData) => {
   const result = await fetch('/api/posts', {

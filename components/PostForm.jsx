@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { submitPost } from '../services';
 import { createEditor, Editor, Transforms, Text } from 'slate';
-import { Slate, Editable, withReact } from 'slate-react';
+import { Slate, withReact } from 'slate-react';
 import TextEditor from './TextEditor';
 import AssetInput from './AssetInput';
 

@@ -1,13 +1,8 @@
-import {
-  PostCard,
-  Categories,
-  PostWidget,
-  Layout,
-  PostForm,
-} from '../components';
+import { PostCard, Layout } from '../components';
 import { getRecentPosts } from '../services';
 
 export default function Home({ posts }) {
+  // console.log('Posts received:', posts);
   return (
     <Layout>
       <div className="container flex-col h-auto mx-auto max-w-screen-lg px-0">
@@ -22,10 +17,6 @@ export default function Home({ posts }) {
                 <PostCard key={index} post={post} />
               ))}
           </div>
-          <div>
-            {/* <PostWidget /> */}
-            {/* <Categories /> */}
-          </div>
         </div>
       </div>
     </Layout>
@@ -33,9 +24,10 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps(context) {
-  const posts = (await getRecentPosts()) || [];
+  const posts = await getRecentPosts();
 
   return {
     props: { posts },
+    revalidate: 60,
   };
 }
