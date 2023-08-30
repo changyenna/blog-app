@@ -166,10 +166,6 @@ const PostForm = () => {
                 initialValue={initialValue}
               >
                 <TextEditor editor={editor} readOnly={false} />
-                {/* <Editable
-                  className="p-4 outline-none w-full rounded-lg h-80 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700"
-                  placeholder="Content"
-                /> */}
               </Slate>
             </div>
           </div>

@@ -26,7 +26,7 @@ const PostCard = ({ post }) => (
       <div className="absolute inset-0 flex items-center justify-center  bg-gray-400  bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300">
         <p className="text-center text-white text-xl font-bold uppercase">
           <Link href={`/post/${post.slug}`}>
-            {post.title}
+            <span>{post.title}</span>
             {moment(post.createdAt).format('MMM DD, YYYY')}
           </Link>
         </p>

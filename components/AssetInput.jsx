@@ -57,7 +57,7 @@ export default function AssetInput({ onAssetUploaded }) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} class="flex">
+      <form onSubmit={handleSubmit} className="flex">
         <input
           type="text"
           id="url"
@@ -66,7 +66,7 @@ export default function AssetInput({ onAssetUploaded }) {
           className="py-3 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700 flex-initial"
           placeholder="copy and paste image address"
         />
-        <div class="flex-none">
+        <div className="flex-none">
           <button
             type="submit"
             className={`ml-2 py-3 px-4 bg-indigo-500 text-white rounded-lg flex items-center ${

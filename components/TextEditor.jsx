@@ -194,32 +194,32 @@ function TextEditor(props) {
 
     switch (event.key) {
       case '&': {
-        editor.insertText('and');
+        // editor.insertText('and');
         break;
       }
 
       case 'b': {
-        formatBold();
+        // formatBold();
         break;
       }
 
       case 'i': {
-        formatItalic();
+        // formatItalic();
         break;
       }
 
       case 'u': {
-        formatUnderlined();
+        // formatUnderlined();
         break;
       }
 
       case '`': {
-        formatCode();
+        // formatCode();
         break;
       }
 
       case 'l': {
-        formatList();
+        // formatList();
         break;
       }
 
