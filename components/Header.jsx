@@ -21,8 +21,8 @@ const Header = () => {
           </Link>
 
           <Link href="/">
-            <div className="bg-yellow-500 w-40 h-50 flex justify-center items-center">
-              <span className="cursor-pointer font-bold text-4xl text-black">
+            <div className="bg-[#FFD925] w-40 h-50 flex justify-center items-center">
+              <span className="cursor-pointer font-black text-4xl text-black">
                 JOLF
               </span>
             </div>

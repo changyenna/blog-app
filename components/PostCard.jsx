@@ -6,7 +6,7 @@ import Link from 'next/link';
 // import { grpahCMSImageLoader } from '../util';
 
 const PostCard = ({ post }) => (
-  <div className="bg-white shadow-sm">
+  <div className="bg-white">
     {/* <div className="relative shadow-md inline-block w-full h-60 lg:h-80 mb-6">
       <Image
         unoptimized
@@ -17,19 +17,24 @@ const PostCard = ({ post }) => (
         src={post.featuredImage.url}
       />
     </div> */}
-    <div className="relative overflow-hidden pb-80 mb-5">
+    <div className="relative overflow-hidden lg:pb-80 sm:pb-60 xs:pb-40 mb-3 mx-3">
       <img
         src={post.featuredImage.url}
         alt={post.title}
         className="object-top absolute h-110 w-full object-cover shadow-lg transition duration-300 hover:brightness-75"
       />
-      <div className="absolute inset-0 flex items-center justify-center  bg-gray-400  bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300">
-        <p className="text-center text-white text-xl font-bold uppercase">
+      <div className="absolute inset-0 flex items-center justify-center bg-gray-400 bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300">
+        <div className="text-center text-white text-xl font-bold uppercase">
           <Link href={`/post/${post.slug}`}>
-            <span>{post.title}</span>
-            {moment(post.createdAt).format('MMM DD, YYYY')}
+            <div className="text-center text-xl font-bold uppercase">
+              {post.title}
+              <br />
+              <span className="block text-xl">
+                {moment(post.createdAt).format('MMM DD, YYYY')}
+              </span>
+            </div>
           </Link>
-        </p>
+        </div>
       </div>
     </div>
 
