@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import moment from 'moment';
 import Link from 'next/link';
 
 // import { grpahCMSImageLoader } from '../util';
 
-const PostCard = ({ post }) => (
-  <div className="bg-white">
-    {/* <div className="relative shadow-md inline-block w-full h-60 lg:h-80 mb-6">
+const PostCard = ({ post }) => {
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth > 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  return (
+    <div className="bg-white">
+      {/* <div className="relative shadow-md inline-block w-full h-60 lg:h-80 mb-6">
       <Image
         unoptimized
         loader={grpahCMSImageLoader}
@@ -17,28 +31,44 @@ const PostCard = ({ post }) => (
         src={post.featuredImage.url}
       />
     </div> */}
-    <div className="relative overflow-hidden lg:pb-80 sm:pb-60 xs:pb-40 mb-3 mx-3">
-      <img
-        src={post.featuredImage.url}
-        alt={post.title}
-        className="object-top absolute h-110 w-full object-cover shadow-lg transition duration-300 hover:brightness-75"
-      />
-      <div className="absolute inset-0 flex items-center justify-center bg-gray-400 bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300">
-        <div className="text-center text-white text-xl font-bold uppercase">
-          <Link href={`/post/${post.slug}`}>
-            <div className="text-center text-xl font-bold uppercase">
-              {post.title}
-              <br />
-              <span className="block text-xl">
-                {moment(post.createdAt).format('MMM DD, YYYY')}
-              </span>
+      <div className="relative overflow-hidden lg:pb-80 sm:pb-60 xs:pb-40 mb-3 mx-3  cursor-pointer">
+        <img
+          src={post.featuredImage.url}
+          alt={post.title}
+          className="object-top absolute h-110 w-full object-cover shadow-lg transition duration-300 hover:brightness-75"
+        />
+        {isLargeScreen ? (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-400 bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity duration-300">
+            <div className="text-center text-white text-xl font-bold uppercase">
+              <Link href={`/post/${post.slug}`}>
+                <div className="text-center text-xl font-bold uppercase">
+                  {post.title}
+                  <br />
+                  <span className="block text-xl">
+                    {moment(post.createdAt).format('MMM DD, YYYY')}
+                  </span>
+                </div>
+              </Link>
             </div>
-          </Link>
-        </div>
+          </div>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+            <div className="text-center text-white text-xl font-bold uppercase p-10">
+              <Link href={`/post/${post.slug}`}>
+                <div className="text-center text-xl font-bold uppercase">
+                  {post.title}
+                  <br />
+                  <span className="block text-xl">
+                    {moment(post.createdAt).format('MMM DD, YYYY')}
+                  </span>
+                </div>
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
 
-    {/* <h1 className="transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
+      {/* <h1 className="transition duration-700 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
       <Link href={`/post/${post.slug}`}>{post.title}</Link>
     </h1>
     <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
@@ -86,7 +116,7 @@ const PostCard = ({ post }) => (
         </span>
       </Link>
     </div> */}
-  </div>
-);
-
+    </div>
+  );
+};
 export default PostCard;
