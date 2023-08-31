@@ -45,9 +45,9 @@ const PostDetails = ({ post }) => {
         <div className="container flex-col h-auto mx-auto max-w-screen-xl px-10">
           <div className="grid grid-cols-7 gap-5">
             {isLargeScreen && (
-              <div className="md:col-span-2 ">
-                <div className="relative lg:sticky top-8">
-                  <Categories className="hidden sm:block" />
+              <div className="md:col-span-2 flex justify-center">
+                <div className="relative md:fixed top-21 ">
+                  <Categories />
                 </div>
               </div>
             )}
@@ -60,8 +60,8 @@ const PostDetails = ({ post }) => {
               <Comments slug={post.slug} />
             </div>
             {isLargeScreen && (
-              <div className="md:col-span-2">
-                <div className="relative lg:sticky top-8">
+              <div className="md:col-span-2  flex justify-center">
+                <div className="relative md:fixed top-21">
                   adjacent posts photo gallery
                 </div>
               </div>

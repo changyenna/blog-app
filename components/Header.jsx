@@ -37,7 +37,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="container flex-col h-auto mx-auto max-w-screen-lg px-0">
+    <div className="container flex-col h-auto mx-auto max-w-screen-lg">
       <div className="container fixed flex-col h-auto mx-auto bg-white max-w-screen-lg z-[99]">
         <div className="mx-3 md:px-10 sm:px-0">
           <div className="py-7">
