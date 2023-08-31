@@ -32,8 +32,6 @@ export default function AssetInput({ onAssetUploaded }) {
               headers: {
                 'Content-Type': 'application/json',
               },
-              // Add any required data for the publishing request
-              // For example: JSON.stringify({}),
             });
 
             console.log('Publishing response status:', publishRes.status);
@@ -51,7 +49,7 @@ export default function AssetInput({ onAssetUploaded }) {
     } catch (error) {
       setUploadStatus('Upload failed');
     } finally {
-      setUploading(false); // Stop the spinner animation
+      setUploading(false);
     }
   };
 
@@ -64,7 +62,7 @@ export default function AssetInput({ onAssetUploaded }) {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           className="py-3 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700 flex-initial"
-          placeholder="copy and paste image address"
+          placeholder="copy & paste image address"
         />
         <div className="flex-none">
           <button

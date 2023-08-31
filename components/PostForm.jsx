@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { submitPost } from '../services';
 import { createEditor } from 'slate';
 import { Slate, withReact } from 'slate-react';
@@ -7,6 +7,8 @@ import AssetInput from './AssetInput';
 
 const PostForm = () => {
   const [editor] = useState(() => withReact(createEditor()));
+  const [submissionStatus, setSubmissionStatus] = useState('');
+
   const initialValue = [
     {
       type: 'paragraph',
@@ -49,6 +51,11 @@ const PostForm = () => {
   const handlePostSubmission = async () => {
     const { title, slug, excerpt, featuredPost, featuredImage } = formData;
 
+    if (!title || !slug || !featuredImage) {
+      setSubmissionStatus('Error: Please fill out all required fields');
+      return;
+    }
+
     const postObj = {
       title,
       slug,
@@ -60,38 +67,53 @@ const PostForm = () => {
       featuredPost,
     };
 
-    // console.log('Post Object:', JSON.stringify(postObj, null, 2));
-
+    console.log('Post Object:', JSON.stringify(postObj, null, 2));
     try {
       const response = await submitPost(postObj);
-      // console.log('Post submitted:', response);
-      console.log('Post submitted:', JSON.stringify(response, null, 2));
       console.log('Response Post ID', response.createPost.id);
 
-      // publish the post
-      try {
-        const publishRes = await fetch(
-          `/api/publish-post/${response.createPost.id}`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-
-        if (!publishRes.ok) {
-          console.error(
-            'Error publishing post:',
-            publishRes.status,
-            publishRes.statusText
+      if (response.createPost.id) {
+        console.log('Post submitted:', JSON.stringify(response, null, 2));
+        setSubmissionStatus('Submission successful');
+        // publish the post
+        try {
+          const publishRes = await fetch(
+            `/api/publish-post/${response.createPost.id}`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
           );
+
+          if (!publishRes.ok) {
+            setSubmissionStatus('Publish failed');
+            console.error(
+              'Error publishing post:',
+              publishRes.status,
+              publishRes.statusText
+            );
+          } else {
+            setSubmissionStatus('Published successful');
+            console.log('Post published successfully');
+          }
+        } catch (error) {
+          console.error('Error publishing post:', error);
+          setSubmissionStatus('Published failed');
         }
-      } catch (error) {
-        console.error('Error publishing post:', error);
+      } else {
+        console.error('Post submission failed: No ID returned');
+        setSubmissionStatus('Submission failed');
       }
     } catch (error) {
+      // setSubmissionStatus('Submission failed');
       console.error('Error submitting post:', error);
+      if (error.message.includes('Unexpected token')) {
+        setSubmissionStatus('Error: Please make sure slug is unique');
+      } else {
+        setSubmissionStatus('Submission failed');
+      }
     }
   };
 
@@ -100,6 +122,7 @@ const PostForm = () => {
       ...prevData,
       featuredImage: id,
     }));
+    console.log({ formData });
   };
 
   return (
@@ -193,6 +216,18 @@ const PostForm = () => {
           >
             Create Post
           </button>
+          {submissionStatus && (
+            <p
+              className={
+                submissionStatus === 'Submission successful' ||
+                submissionStatus === 'Published successful'
+                  ? 'text-green-500 mt-2'
+                  : 'text-red-500 mt-2'
+              }
+            >
+              {submissionStatus}
+            </p>
+          )}
         </div>
       </div>
     </div>

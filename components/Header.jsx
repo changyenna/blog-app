@@ -45,7 +45,7 @@ const Header = () => {
               <div className="flex justify-between flex items-center">
                 {categoriesBefore.map((category, index) => (
                   <Link key={index} href={`/category/${category.slug}`}>
-                    <span className="cursor-pointer font-bold text-2xl text-black mr-6">
+                    <span className="cursor-pointer font-extrabold text-2xl text-black mr-6">
                       {category.name}
                     </span>
                   </Link>
@@ -59,7 +59,7 @@ const Header = () => {
                 </Link>
                 {categoriesAfter.map((category, index) => (
                   <Link key={index} href={`/category/${category.slug}`}>
-                    <span className="cursor-pointer font-bold text-2xl text-black ml-6">
+                    <span className="cursor-pointer font-extrabold text-2xl text-black ml-6">
                       {category.name}
                     </span>
                   </Link>
