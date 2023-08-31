@@ -23,7 +23,7 @@ export default function Home({ posts }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const posts = await getRecentPosts();
 
   return {
