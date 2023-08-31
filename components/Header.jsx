@@ -13,7 +13,7 @@ const Header = () => {
   const categoriesAfter = categories.slice(halfCategories);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isLargeScreen, setIsLargeScreen] = useState(true); // State to track screen size
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);

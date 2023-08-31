@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import {
@@ -16,6 +16,20 @@ import { getPosts, getPostDetails } from '../../services';
 
 const PostDetails = ({ post }) => {
   // console.log('Inside Post Details ', post);
+  const [isLargeScreen, setIsLargeScreen] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth > 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const router = useRouter();
 
@@ -30,24 +44,28 @@ const PostDetails = ({ post }) => {
       <Layout>
         <div className="container flex-col h-auto mx-auto max-w-screen-xl px-10">
           <div className="grid grid-cols-7 gap-5">
-            <div className="col-span-2">
-              <div className="relative lg:sticky top-8">
-                <Categories />
+            {isLargeScreen && (
+              <div className="md:col-span-2 ">
+                <div className="relative lg:sticky top-8">
+                  <Categories className="hidden sm:block" />
+                </div>
               </div>
-            </div>
-            <div className="col-span-3">
+            )}
+
+            <div className="md:col-span-3 sm:col-span-7">
               <PostDetail post={post} />
               {/* <Author author={post.author} /> */}
               {/* <AdjacentPosts slug={post.slug} createdAt={post.createdAt} /> */}
               <CommentsForm slug={post.slug} />
               <Comments slug={post.slug} />
             </div>
-            <div className="col-span-2">
-              <div className="relative lg:sticky top-8">
-                adjacent posts photo gallery
-                {/* <PostWidget /> */}
+            {isLargeScreen && (
+              <div className="md:col-span-2">
+                <div className="relative lg:sticky top-8">
+                  adjacent posts photo gallery
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </Layout>
