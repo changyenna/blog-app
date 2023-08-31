@@ -52,7 +52,7 @@ const PostDetails = ({ post }) => {
               </div>
             )}
 
-            <div className="md:col-span-3 sm:col-span-7">
+            <div className="md:col-span-3 sm:col-span-7 xs:col-span-7">
               <PostDetail post={post} />
               {/* <Author author={post.author} /> */}
               {/* <AdjacentPosts slug={post.slug} createdAt={post.createdAt} /> */}
