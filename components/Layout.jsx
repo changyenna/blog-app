@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <div className="relative min-h-50">
       <Header />
-      <div>{children}</div>
+      <div className="py-28">{children}</div>
       <Footer />
     </div>
   );
