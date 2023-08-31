@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { submitPost } from '../services';
-import { createEditor, Editor, Transforms, Text } from 'slate';
+import { createEditor } from 'slate';
 import { Slate, withReact } from 'slate-react';
 import TextEditor from './TextEditor';
 import AssetInput from './AssetInput';
@@ -68,7 +68,7 @@ const PostForm = () => {
       console.log('Post submitted:', JSON.stringify(response, null, 2));
       console.log('Response Post ID', response.createPost.id);
 
-      // Publish the post
+      // publish the post
       try {
         const publishRes = await fetch(
           `/api/publish-post/${response.createPost.id}`,
@@ -95,26 +95,6 @@ const PostForm = () => {
     }
   };
 
-  const applyBoldFormatting = () => {
-    const [match] = Editor.nodes(editor, {
-      match: (n) => n.bold === true,
-      universal: true,
-    });
-
-    if (!match) {
-      Transforms.setNodes(
-        editor,
-        { bold: true }, // Add or remove other styles as needed
-        { match: (n) => Text.isText(n), split: true }
-      );
-    } else {
-      Transforms.unwrapNodes(editor, {
-        match: (n) => n.bold === true,
-        split: true,
-      });
-    }
-  };
-
   const handleAssetUploaded = (id) => {
     setFormData((prevData) => ({
       ...prevData,
@@ -122,12 +102,8 @@ const PostForm = () => {
     }));
   };
 
-  const handleBoldClick = (e) => {
-    e.preventDefault();
-    applyBoldFormatting();
-  };
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center items-center min-h-screen mx-3">
       <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8 max-w-screen-lg w-full">
         <h3 className="text-xl mb-8 font-semibold border-b pb-4">
           Create a New Post

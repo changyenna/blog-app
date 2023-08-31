@@ -2,7 +2,7 @@ import { PostCard, Layout } from '../components';
 import { getRecentPosts } from '../services';
 
 export default function Home({ posts }) {
-  console.log('Posts received:', posts);
+  // console.log('Posts received:', posts);
   return (
     <Layout>
       <div className="container flex-col h-auto mx-auto max-w-screen-lg px-0">

@@ -279,7 +279,7 @@ function TextEditor(props) {
           <p>Heading 3</p>
         </button>
         <button
-          className="bg-gray-200 px-2 py-1 mr-2 rounded focus:outline-none"
+          className="bg-gray-200 px-2 py-1 mr-2 rounded focus:outline-none sm:mt-0 xs:mt-2"
           onPointerDown={(e) => {
             formatTitle(editor, 4);
           }}

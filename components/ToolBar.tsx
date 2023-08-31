@@ -15,7 +15,6 @@ const ToolBar = ({ editor, formatText }) => {
       >
         <em>Italic</em>
       </button>
-      {/* Add more formatting buttons as needed */}
     </div>
   );
 };
