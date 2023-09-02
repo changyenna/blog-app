@@ -52,7 +52,7 @@ const Header = () => {
                 ))}
                 <Link href="/">
                   <span className="bg-[#FFD925] py-1 px-5 flex justify-center items-center  cursor-pointer font-extrabold text-4xl text-black hover:text-yellow-300 hover:bg-gray-500">
-                    GOLF
+                    BLOG
                   </span>
                 </Link>
                 {categoriesAfter.map((category, index) => (
@@ -87,11 +87,9 @@ const Header = () => {
 
                 <div className="col-span-1 flex items-center">
                   <Link href="/">
-                    <div className="bg-[#FFD925] py-1 px-5 flex justify-center items-center">
-                      <span className="cursor-pointer font-extrabold text-4xl text-black">
-                        GOLF
-                      </span>
-                    </div>
+                    <span className="bg-[#FFD925] py-1 px-5 flex justify-center items-center  cursor-pointer font-extrabold text-4xl text-black hover:text-yellow-300 hover:bg-gray-500">
+                      BLOG
+                    </span>
                   </Link>
                 </div>
               </div>
