@@ -15,7 +15,6 @@ import { getPosts, getPostDetails } from '../../services';
 // import { AdjacentPosts } from '../../sections';
 
 const PostDetails = ({ post }) => {
-  // console.log('Inside Post Details ', post);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
 
   useEffect(() => {

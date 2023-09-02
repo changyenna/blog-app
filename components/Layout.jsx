@@ -1,13 +1,15 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import { UniversalControls } from './UniversalControls';
 
 const Layout = ({ children }) => {
   return (
-    <div className="relative min-h-50">
+    <div>
       <Header />
-      <div className="py-28">{children}</div>
+      <div className="pt-28">{children}</div>
       <Footer />
+      <UniversalControls />
     </div>
   );
 };
