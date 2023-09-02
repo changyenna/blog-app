@@ -45,21 +45,19 @@ const Header = () => {
               <div className="flex justify-between flex items-center">
                 {categoriesBefore.map((category, index) => (
                   <Link key={index} href={`/category/${category.slug}`}>
-                    <span className="cursor-pointer font-extrabold text-2xl text-black mr-6">
+                    <span className="py-1 px-2 flex justify-center items-center  cursor-pointer font-extrabold text-2xl text-black hover:text-[#FFD925] hover:bg-black">
                       {category.name}
                     </span>
                   </Link>
                 ))}
                 <Link href="/">
-                  <div className="bg-[#FFD925] py-1 px-5 flex justify-center items-center">
-                    <span className="cursor-pointer font-extrabold text-4xl text-black">
-                      GOLF
-                    </span>
-                  </div>
+                  <span className="bg-[#FFD925] py-1 px-5 flex justify-center items-center  cursor-pointer font-extrabold text-4xl text-black hover:text-yellow-300 hover:bg-gray-500">
+                    GOLF
+                  </span>
                 </Link>
                 {categoriesAfter.map((category, index) => (
                   <Link key={index} href={`/category/${category.slug}`}>
-                    <span className="cursor-pointer font-extrabold text-2xl text-black ml-6">
+                    <span className="py-1 px-2 flex justify-center items-center cursor-pointer font-extrabold text-2xl text-black hover:text-[#FFD925] hover:bg-black ">
                       {category.name}
                     </span>
                   </Link>
